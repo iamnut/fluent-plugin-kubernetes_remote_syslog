@@ -4,7 +4,7 @@ require 'fluent/mixin/rewrite_tag_name'
 
 module Fluent
   class RemoteSyslogOutput < Fluent::Output
-    Fluent::Plugin.register_output("remote_syslog", self)
+    Fluent::Plugin.register_output("kubernetes_remote_syslog", self)
 
     config_param :hostname, :string, :default => ""
 
@@ -46,7 +46,7 @@ module Fluent
           facility: @facility,
           severity: @severity,
           program: tag,
-          local_hostname: @hostname)
+          local_hostname: record['kubernetes_host'])
 
         @loggers[tag].transmit format(tag, time, record)
       end

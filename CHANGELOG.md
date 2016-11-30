@@ -1,3 +1,7 @@
+## 0.3.3
+
+* Forked from https://github.com/dlackty/fluent-plugin-remote_syslog to add specific parsing for kubernetes.
+
 ## 0.3.2
 
 * Rewrite plugin to make rewrite tag function work properly [#4](https://github.com/dlackty/fluent-plugin-remote_syslog/pull/4)
