@@ -1,13 +1,13 @@
-# fluent-plugin-remote_syslog
-
-[![Build Status](https://travis-ci.org/dlackty/fluent-plugin-remote_syslog.svg?branch=master)](https://travis-ci.org/dlackty/fluent-plugin-remote_syslog)
+# fluent-plugin-kubernetes_remote_syslog
 
 [Fluentd](http://fluentd.org) plugin for output to remote syslog serivce (e.g. [Papertrail](http://papertrailapp.com/))
+
+This repo was forked from https://github.com/dlackty/fluent-plugin-remote_syslog
 
 ## Installation
 
 ```bash
- fluent-gem install fluent-plugin-remote_syslog
+ fluent-gem install fluent-plugin-kubernetes_remote_syslog
 ```
 
 ## Usage
@@ -26,4 +26,4 @@ This plugin makes use of [Fluent::Mixin::PlainTextFormatter](https://github.com/
 
 ## License
 
-Copyright (c) 2014-2015 Richard Lee. See LICENSE for details.
+Copyright (c) 2014-2015 Richard Lee, George Goh. See LICENSE for details.
