@@ -13,12 +13,13 @@ module Fluent
     include Fluent::HandleTagNameMixin
     include Fluent::Mixin::RewriteTagName
 
-    config_param :host, :string
-    config_param :port, :integer, :default => 514
+    config_param :host,     :string
+    config_param :port,     :integer, :default => 514
+    config_param :protocol, :string,  :default => 'udp'
 
     config_param :facility, :string, :default => "user"
     config_param :severity, :string, :default => "notice"
-    config_param :tag, :string, :default => "fluentd"
+    config_param :tag,      :string, :default => "fluentd"
 
     def initialize
       super
@@ -41,12 +42,22 @@ module Fluent
         end
 
         tag = rewrite_tag!(tag.dup)
-        @loggers[tag] ||= RemoteSyslogLogger::UdpSender.new(@host,
-          @port,
-          facility: @facility,
-          severity: @severity,
-          program: tag,
-          local_hostname: record['kubernetes_host'])
+        if @protocol.downcase == 'tcp'
+          @loggers[tag] ||= RemoteSyslogLogger::TcpSender.new(@host,
+            @port,
+            facility: @facility,
+            severity: @severity,
+            program: tag,
+            local_hostname: record['kubernetes_host'])
+        else
+          @loggers[tag] ||= RemoteSyslogLogger::UdpSender.new(@host,
+            @port,
+            facility: @facility,
+            severity: @severity,
+            program: tag,
+            local_hostname: record['kubernetes_host'])
+        end
+
 
         @loggers[tag].transmit format(tag, time, record)
       end
