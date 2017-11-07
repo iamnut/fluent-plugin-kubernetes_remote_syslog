@@ -16,6 +16,7 @@ This repo was forked from https://github.com/dlackty/fluent-plugin-remote_syslog
 <match foo>
   type remote_syslog
   host example.com
+  protocol udp
   port 514
   severity debug
   tag fluentd

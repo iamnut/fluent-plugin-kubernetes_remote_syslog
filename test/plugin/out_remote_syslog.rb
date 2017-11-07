@@ -15,6 +15,7 @@ class RemoteSyslogOutputTest < MiniTest::Unit::TestCase
       type kubernetes_remote_syslog
       hostname foo.com
       host example.com
+      protocol udp
       port 5566
       severity debug
       tag minitest
@@ -31,6 +32,7 @@ class RemoteSyslogOutputTest < MiniTest::Unit::TestCase
 
     assert_equal "example.com", logger.instance_variable_get(:@remote_hostname)
     assert_equal 5566, logger.instance_variable_get(:@remote_port)
+    assert_equal "udp", logger.instance_variable_get(:@remote_protocol)
 
     p = logger.instance_variable_get(:@packet)
     assert_equal "foo.com", p.hostname
@@ -44,6 +46,7 @@ class RemoteSyslogOutputTest < MiniTest::Unit::TestCase
       type kubernetes_remote_syslog
       hostname foo.com
       host example.com
+      protocol udp
       port 5566
       severity debug
       tag rewrited.${tag_parts[1]}

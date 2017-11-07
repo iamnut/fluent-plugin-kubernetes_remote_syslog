@@ -1,3 +1,7 @@
+## 0.3.4
+
+* Switched syslog ruby gen to the one which supports TCP logging
+
 ## 0.3.3
 
 * Forked from https://github.com/dlackty/fluent-plugin-remote_syslog to add specific parsing for kubernetes.
