@@ -17,13 +17,14 @@ module Fluent
     config_param :port,     :integer, :default => 514
     config_param :protocol, :string,  :default => 'udp'
 
-    config_param :facility, :string, :default => "user"
-    config_param :severity, :string, :default => "notice"
-    config_param :tag,      :string, :default => "fluentd"
+    config_param :facility,     :string,  :default => "user"
+    config_param :severity,     :string,  :default => "notice"
+    config_param :tag,          :string,  :default => "fluentd"
+    config_param :packet_size,  :integer, :default => 1024
 
     def initialize
       super
-      require "remote_syslog_logger"
+      require "remote_syslog_sender"
       @loggers = {}
     end
 
@@ -47,6 +48,7 @@ module Fluent
             @port,
             facility: @facility,
             severity: @severity,
+            packet_size: @packet_size,
             program: tag,
             local_hostname: record['kubernetes_host'])
         else
@@ -54,6 +56,7 @@ module Fluent
             @port,
             facility: @facility,
             severity: @severity,
+            packet_size: @packet_size,
             program: tag,
             local_hostname: record['kubernetes_host'])
         end

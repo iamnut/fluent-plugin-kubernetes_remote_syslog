@@ -10,16 +10,30 @@ This repo was forked from https://github.com/dlackty/fluent-plugin-remote_syslog
  fluent-gem install fluent-plugin-kubernetes_remote_syslog
 ```
 
-## Usage
+## Typical Usage
 
 ```
 <match foo>
   type remote_syslog
   host example.com
-  protocol udp
   port 514
   severity debug
   tag fluentd
+</match>
+```
+
+## TCP Usage
+UDP logs are limited to 1024 bytes which can truncate your logs. If you need to log larger entries then switch to TCP logging and increase the packet size.
+
+```
+<match foo>
+  type remote_syslog
+  host example.com
+  protocol tcp
+  port 514
+  severity debug
+  tag fluentd
+  packet_size 65535
 </match>
 ```
 

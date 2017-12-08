@@ -1,3 +1,7 @@
+## 0.3.5
+
+* Switched syslog ruby gen to one that easily supports TCP logging AND larger packet sizes
+
 ## 0.3.4
 
 * Switched syslog ruby gen to the one which supports TCP logging
