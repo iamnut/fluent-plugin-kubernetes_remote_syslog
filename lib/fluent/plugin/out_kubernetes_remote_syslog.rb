@@ -44,7 +44,7 @@ module Fluent
 
         tag = rewrite_tag!(tag.dup)
         if @protocol.downcase == 'tcp'
-          @loggers[tag] ||= RemoteSyslogLogger::TcpSender.new(@host,
+          @loggers[tag] ||= RemoteSyslogSender::TcpSender.new(@host,
             @port,
             facility: @facility,
             severity: @severity,
@@ -52,7 +52,7 @@ module Fluent
             program: tag,
             local_hostname: record['kubernetes_host'])
         else
-          @loggers[tag] ||= RemoteSyslogLogger::UdpSender.new(@host,
+          @loggers[tag] ||= RemoteSyslogSender::UdpSender.new(@host,
             @port,
             facility: @facility,
             severity: @severity,
