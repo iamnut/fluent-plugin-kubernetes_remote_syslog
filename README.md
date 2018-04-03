@@ -14,7 +14,7 @@ This repo was forked from https://github.com/dlackty/fluent-plugin-remote_syslog
 
 ```
 <match foo>
-  type remote_syslog
+  type kubernetes_remote_syslog
   host example.com
   port 514
   severity debug
@@ -27,7 +27,7 @@ UDP logs are limited to 1024 bytes which can truncate your logs. If you need to 
 
 ```
 <match foo>
-  type remote_syslog
+  type kubernetes_remote_syslog
   host example.com
   protocol tcp
   port 514
