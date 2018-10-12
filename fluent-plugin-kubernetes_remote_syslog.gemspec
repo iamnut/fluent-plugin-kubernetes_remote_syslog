@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["georgegohkokleong@gmail.com"]
   spec.summary       = %q{Fluentd output plugin for remote syslog, specific to kubernetes logs}
   spec.description   = spec.description
-  spec.homepage      = "https://github.com/georgegoh/fluent-plugin-kubernetes_remote_syslog"
+  spec.homepage      = "https://github.com/iamnut/fluent-plugin-kubernetes_remote_syslog"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
