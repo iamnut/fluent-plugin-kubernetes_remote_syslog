@@ -50,7 +50,7 @@ module Fluent
             severity: @severity,
             packet_size: @packet_size,
             program: tag,
-            local_hostname: record['kubernetes_host'])
+            local_hostname: record["docker"]["container_id"])
         else
           @loggers[tag] ||= RemoteSyslogSender::UdpSender.new(@host,
             @port,
@@ -58,11 +58,11 @@ module Fluent
             severity: @severity,
             packet_size: @packet_size,
             program: tag,
-            local_hostname: record['kubernetes_host'])
+            local_hostname: record["docker"]["container_id"])
         end
 
 
-        @loggers[tag].transmit format(tag, time, record)
+        @loggers[tag].transmit format(tag, time, record['log'])
       end
     end
   end
